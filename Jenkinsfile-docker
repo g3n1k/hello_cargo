@@ -1,0 +1,46 @@
+pipeline {
+    agent {
+        docker {
+            image 'rust:latest' // Gunakan image Rust
+        }
+    }
+    stages {
+        stage('Clone Repository') {
+            steps {
+                checkout scm // Cloning repository dari SCM (e.g., GitHub)
+            }
+        }
+        stage('Build Rust Application') {
+            steps {
+                sh 'cargo update' // update
+                sh 'cargo build --release' // Compile aplikasi Rust
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build Docker image menggunakan Dockerfile
+                    def appImage = "hello:latest"
+                    sh "docker build -t ${appImage} ."
+                }
+            }
+        }
+        // stage('Push Docker Image') {
+        //     steps {
+        //         script {
+        //             // Ganti `my-docker-repo` dengan repository DockerHub Anda
+        //             def dockerRepo = "my-docker-repo/my_rust_app"
+        //             sh """
+        //             docker tag my_rust_app:latest ${dockerRepo}:latest
+        //             docker login -u $DOCKER_USER -p $DOCKER_PASS
+        //             docker push ${dockerRepo}:latest
+        //             """
+        //         }
+        //     }
+        // }
+    }
+    // environment {
+    //     DOCKER_USER = credentials('docker-username') // Username DockerHub
+    //     DOCKER_PASS = credentials('docker-password') // Password DockerHub
+    // }
+}
