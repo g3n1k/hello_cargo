@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     // Jalankan container untuk test
-                    sh 'docker run --rm my-rust-app --test'
+                    sh 'docker run --rm my-rust-app my_app'
                 }
             }
         }
