@@ -34,7 +34,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', 
+                withCredentials([usernamePassword(credentialsId: 'test-cicd-docker', 
                     usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     script {
                         // Login ke Docker Hub
