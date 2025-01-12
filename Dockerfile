@@ -8,7 +8,11 @@ COPY . .
 RUN cargo build --release
 
 # Stage 2: Final image
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
+
+RUN apt-get update && apt-get install -y \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
