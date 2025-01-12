@@ -1,9 +1,11 @@
 pipeline {
+    
     agent any
 
     environment {
-        // Load variables from .env file
         ENV_FILE = '.env'
+        DOCKER_IMAGE = 'g3n1k/my-rust-app:latest'
+        DOCKER_COMPOSE_PATH = '~/workspace/rust'
     }
 
     stages {
@@ -43,6 +45,36 @@ pipeline {
                         // Tag dan push image
                         sh 'docker tag my-rust-app $DOCKER_USER/my-rust-app:latest'
                         sh 'docker push $DOCKER_USER/my-rust-app:latest'
+                    }
+                }
+            }
+        }
+
+        stage('Pull Latest Docker Image') {
+            steps {
+                script {
+                    // Login ke Docker Hub
+                    withCredentials([usernamePassword(credentialsId: 'test-cicd-docker', 
+                        usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                    }
+
+                    // Pull image terbaru
+                    sh "docker pull ${DOCKER_IMAGE}"
+                }
+            }
+        }
+
+        stage('Restart Docker Compose') {
+            steps {
+                script {
+                    // Pindah ke direktori docker-compose.yml
+                    dir("${DOCKER_COMPOSE_PATH}") {
+                        // Restart Docker Compose
+                        sh """
+                        docker-compose down
+                        docker-compose up -d
+                        """
                     }
                 }
             }
