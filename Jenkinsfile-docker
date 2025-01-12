@@ -41,8 +41,8 @@ pipeline {
                         sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                         
                         // Tag dan push image
-                        sh 'docker tag my-rust-app username/my-rust-app:latest'
-                        sh 'docker push username/my-rust-app:latest'
+                        sh 'docker tag my-rust-app $DOCKER_USER/my-rust-app:latest'
+                        sh 'docker push $DOCKER_USER/my-rust-app:latest'
                     }
                 }
             }
