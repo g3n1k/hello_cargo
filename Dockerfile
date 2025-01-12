@@ -1,37 +1,19 @@
-# Stage 1: Builder
+# Stage 1: Build
 FROM rust:latest AS builder
 
-# Install dependencies
-RUN apt-get update && apt-get install -y pkg-config libssl-dev
+WORKDIR /usr/src/app
 
-# Create a new user to avoid running as root
-RUN useradd -m rustuser
-WORKDIR /home/rustuser/app
-
-# Copy the Rust project files
+# Copy source code and dependencies
 COPY . .
-
-# Set the user for better security
-USER rustuser
-
-# Build the project
 RUN cargo build --release
 
-# Stage 2: Final Image
-FROM debian:buster-slim
+# Stage 2: Final image
+FROM debian:bullseye-slim
 
-# Install runtime dependencies
-RUN apt-get update && apt-get install -y \
-    ca-certificates && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
 
-# Create a non-root user
-RUN useradd -m rustuser
-WORKDIR /home/rustuser
+# Copy the binary from the build stage
+COPY --from=builder /usr/src/app/target/release/my_app /app/
 
-# Copy the compiled binary from the builder stage
-COPY --from=builder /home/rustuser/app/target/release/my_app /usr/local/bin/my_app
-
-# Set the user and entrypoint
-USER rustuser
-ENTRYPOINT ["/usr/local/bin/my_app"]
+# Set executable
+CMD ["./my_app"]
