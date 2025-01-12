@@ -1,25 +1,60 @@
 pipeline {
-  agent any
-  stages {
-    stage('verify Cargo installation') {
-      steps {
-        sh 'cargo --version'
-      }
+    agent any
+
+    environment {
+        // Load variables from .env file
+        ENV_FILE = '.env'
     }
-    stage('compile') {
-      steps {
-        sh 'cargo build'
-      }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone repository dari Git
+                git branch: 'main', url: 'https://github.com/g3n1k/hello_cargo.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build Docker Image
+                    sh 'docker build -t my-rust-app .'
+                }
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                script {
+                    // Jalankan container untuk test
+                    sh 'docker run --rm my-rust-app --test'
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', 
+                    usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    script {
+                        // Login ke Docker Hub
+                        sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                        
+                        // Tag dan push image
+                        sh 'docker tag my-rust-app username/my-rust-app:latest'
+                        sh 'docker push username/my-rust-app:latest'
+                    }
+                }
+            }
+        }
     }
-    stage('run manually') {
-      steps {
-        sh './target/debug/hello'
-      }
+
+    post {
+        success {
+            echo 'Build and push completed successfully!'
+        }
+        failure {
+            echo 'Build or push failed!'
+        }
     }
-    stage('run with Cargo') {
-      steps {
-        sh 'cargo run'
-      }
-    }
-  }
 }
