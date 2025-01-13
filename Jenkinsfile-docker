@@ -72,8 +72,8 @@ pipeline {
                     dir("${DOCKER_COMPOSE_PATH}") {
                         // Restart Docker Compose
                         sh """
-                        docker-compose down
-                        docker-compose up -d
+                        docker compose down
+                        docker compose up -d
                         """
                     }
                 }
