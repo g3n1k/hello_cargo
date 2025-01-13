@@ -65,21 +65,21 @@ pipeline {
             }
         }
 
-        stage('Restart Docker Compose') {
-            steps {
-                script {
-                    // Pindah ke direktori docker-compose.yml
-                    dir("${DOCKER_COMPOSE_PATH}") {
-                        // Restart Docker Compose
-                        sh """
-                        pwd
-                        ls -lh
-                        docker compose down
-                        docker compose up -d
-                        """
-                    }
-                }
-            }
+//        stage('Restart Docker Compose') {
+//            steps {
+//                script {
+//                    // Pindah ke direktori docker-compose.yml
+//                    dir("${DOCKER_COMPOSE_PATH}") {
+//                        // Restart Docker Compose
+//                        sh """
+//                        pwd
+//                        ls -lh
+//                        docker compose down
+//                        docker compose up -d
+//                        """
+//                    }
+//                }
+//            }
         }
     }
 
