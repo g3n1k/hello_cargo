@@ -13,7 +13,7 @@ static mut ITEMS: Vec<Item> = Vec::new();
 
 // Health check endpoint
 async fn health_check() -> impl Responder {
-    HttpResponse::Ok().body("API is running v:01")
+    HttpResponse::Ok().body("API is running v:02")
 }
 
 // Get all items
