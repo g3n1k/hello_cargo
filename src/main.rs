@@ -65,7 +65,7 @@ async fn main() -> std::io::Result<()> {
             .route("/items/{id}", web::put().to(update_item))
             .route("/items/{id}", web::delete().to(delete_item))
     })
-    .bind("127.0.0.1:8080")?
+    .bind("127.0.0.1:8089x")?
     .run()
     .await
 }
