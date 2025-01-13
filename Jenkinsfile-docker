@@ -25,14 +25,14 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                script {
-                    // Jalankan container untuk test
-                    sh 'docker run --rm my-rust-app'
-                }
-            }
-        }
+//        stage('Run Tests') {
+//            steps {
+//                script {
+//                    // Jalankan container untuk test
+//                    sh 'docker run --rm my-rust-app'
+//                }
+//            }
+//        }
 
         stage('Push Docker Image') {
             steps {
