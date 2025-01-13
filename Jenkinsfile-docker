@@ -5,7 +5,7 @@ pipeline {
     environment {
         ENV_FILE = '.env'
         DOCKER_IMAGE = 'g3n1k/my-rust-app:latest'
-        DOCKER_COMPOSE_PATH = '~/workspace/rust'
+        DOCKER_COMPOSE_PATH = '/home/g3n1k/workspace/rust'
     }
 
     stages {
