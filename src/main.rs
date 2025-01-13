@@ -66,7 +66,7 @@ async fn main() -> std::io::Result<()> {
             .route("/items/{id}", web::put().to(update_item))
             .route("/items/{id}", web::delete().to(delete_item))
     })
-    .bind("127.0.0.1:8081")? // Ganti ke port yang berbeda
+    .bind("0.0.0.0:8081")? // Ganti ke port yang berbeda
     .run()
     .await
 }
