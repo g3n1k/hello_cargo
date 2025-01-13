@@ -72,6 +72,8 @@ pipeline {
                     dir("${DOCKER_COMPOSE_PATH}") {
                         // Restart Docker Compose
                         sh """
+                        pwd
+                        ls -lh
                         docker compose down
                         docker compose up -d
                         """
