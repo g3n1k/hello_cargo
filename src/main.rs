@@ -57,6 +57,7 @@ async fn delete_item(id: web::Path<u32>) -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    println!("Starting server on 127.0.0.1:8081");
     HttpServer::new(|| {
         App::new()
             .route("/health", web::get().to(health_check))
@@ -65,7 +66,7 @@ async fn main() -> std::io::Result<()> {
             .route("/items/{id}", web::put().to(update_item))
             .route("/items/{id}", web::delete().to(delete_item))
     })
-    .bind("127.0.0.1:8085")?
+    .bind("127.0.0.1:8081")? // Ganti ke port yang berbeda
     .run()
     .await
 }
