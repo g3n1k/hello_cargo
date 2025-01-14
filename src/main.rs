@@ -13,7 +13,7 @@ static mut ITEMS: Vec<Item> = Vec::new();
 
 // Health check endpoint
 async fn health_check() -> impl Responder {
-    HttpResponse::Ok().body("API is running v:03")
+    HttpResponse::Ok().body("API is running v:04 trigger webhook")
 }
 
 // Get all items
