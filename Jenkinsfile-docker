@@ -8,6 +8,10 @@ pipeline {
         DOCKER_COMPOSE_PATH = '/home/g3n1k/workspace/rust'
     }
 
+    triggers {
+        githubPush() 
+    }
+
     stages {
         stage('Checkout') {
             steps {
