@@ -16,7 +16,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clone repository dari Git
-                git branch: 'main', url: 'https://github.com/g3n1k/hello_cargo.git'
+                git branch: 'wfm-be', url: 'https://github.com/g3n1k/hello_cargo.git'
             }
         }
 
