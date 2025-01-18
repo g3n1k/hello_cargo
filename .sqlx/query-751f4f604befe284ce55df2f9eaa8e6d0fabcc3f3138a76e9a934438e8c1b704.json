@@ -1,0 +1,70 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT \n            *\n        FROM public.project_wo \n        WHERE id = $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "wo_code",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "wo_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "project_type_id",
+        "type_info": "Int2"
+      },
+      {
+        "ordinal": 4,
+        "name": "region_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 5,
+        "name": "user_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 6,
+        "name": "survey_md_doc",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 7,
+        "name": "wo_doc",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 8,
+        "name": "survey_md_price",
+        "type_info": "Int4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "751f4f604befe284ce55df2f9eaa8e6d0fabcc3f3138a76e9a934438e8c1b704"
+}

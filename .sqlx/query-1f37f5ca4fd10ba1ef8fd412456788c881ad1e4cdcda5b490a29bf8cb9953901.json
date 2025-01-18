@@ -1,0 +1,24 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT \n            id\n        FROM public.region2 \n        WHERE regional = $1 and witel = $2 and psa = $3",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Int4",
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "1f37f5ca4fd10ba1ef8fd412456788c881ad1e4cdcda5b490a29bf8cb9953901"
+}

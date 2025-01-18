@@ -1,0 +1,84 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        UPDATE public.progression_wo\n        SET \n            description=$1, \n            attachment_path=$2, \n            status=$3, \n            survey_homepas=$4, \n            valid_homepas=$5, \n            submit_vermit=$6, \n            valid_vermit=$7,\n            wo_id=$9\n        WHERE id = $8\n        returning *",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "wo_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 2,
+        "name": "date",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "description",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "attachment_path",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "status",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 6,
+        "name": "survey_homepas",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 7,
+        "name": "valid_homepas",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 8,
+        "name": "submit_vermit",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 9,
+        "name": "valid_vermit",
+        "type_info": "Int4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Int4",
+        "Varchar",
+        "Int4",
+        "Int4",
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "7a17c0696c6d8fdd07cc5350d96d4c9e76d36860494a7161bfb5db06e4cb0262"
+}

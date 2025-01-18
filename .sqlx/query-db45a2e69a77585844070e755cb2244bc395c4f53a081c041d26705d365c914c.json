@@ -1,0 +1,42 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        INSERT INTO public.project \n            (po_id ,wo_id ,project_type_id ,region_id, unit ,cable_volume ,pole ,port ,service_price ,material_price ,deploy_service_price ,description ,attachment_path ,service ,material ,status, user_id, phase, survey_md_doc, wo_doc, po_doc) \n        VALUES \n            ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21) \n        returning id",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Varchar",
+        "Varchar",
+        "Int2",
+        "Int4",
+        "Varchar",
+        "Int2",
+        "Int2",
+        "Int2",
+        "Int8",
+        "Int8",
+        "Int8",
+        "Varchar",
+        "Varchar",
+        "Bool",
+        "Bool",
+        "Varchar",
+        "Int4",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "db45a2e69a77585844070e755cb2244bc395c4f53a081c041d26705d365c914c"
+}

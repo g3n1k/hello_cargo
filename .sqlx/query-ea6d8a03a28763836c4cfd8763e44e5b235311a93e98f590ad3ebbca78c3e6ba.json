@@ -1,0 +1,40 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        select \n        \tu.id as user_id,\n        \tr.role role,\n            r2.level region_level,\n        \tarray_agg(DISTINCT uaa.area_assigned_id) region_id\n        from public.users_new u\n        left join role r on u.role_id = r.id\n        left join user_area_assigned uaa on u.id = uaa.user_id\n        left join region2 r2 on uaa.area_assigned_id = r2.id\n        where u.id = $1\n      \tgroup by u.id,r.role, r2.level;\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "user_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "role",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "region_level",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "region_id",
+        "type_info": "Int4Array"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      true,
+      null
+    ]
+  },
+  "hash": "ea6d8a03a28763836c4cfd8763e44e5b235311a93e98f590ad3ebbca78c3e6ba"
+}

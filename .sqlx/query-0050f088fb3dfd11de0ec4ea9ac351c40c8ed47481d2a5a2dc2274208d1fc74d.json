@@ -1,0 +1,112 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT \n            id, po_id ,wo_id ,project_type_id ,region_id, unit ,cable_volume ,pole ,port ,service_price ,material_price ,description ,attachment_path ,service ,material ,status \n        FROM public.project \n        WHERE id = $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "po_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "wo_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "project_type_id",
+        "type_info": "Int2"
+      },
+      {
+        "ordinal": 4,
+        "name": "region_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 5,
+        "name": "unit",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 6,
+        "name": "cable_volume",
+        "type_info": "Int2"
+      },
+      {
+        "ordinal": 7,
+        "name": "pole",
+        "type_info": "Int2"
+      },
+      {
+        "ordinal": 8,
+        "name": "port",
+        "type_info": "Int2"
+      },
+      {
+        "ordinal": 9,
+        "name": "service_price",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 10,
+        "name": "material_price",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 11,
+        "name": "description",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 12,
+        "name": "attachment_path",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 13,
+        "name": "service",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 14,
+        "name": "material",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 15,
+        "name": "status",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "0050f088fb3dfd11de0ec4ea9ac351c40c8ed47481d2a5a2dc2274208d1fc74d"
+}

@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "DELETE FROM user_area_assigned WHERE user_id = $1 AND area_assigned_id = $2",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "94074ece599b0b786420fe300ec868345b92b8130741385d7377d5e08fa6e69a"
+}

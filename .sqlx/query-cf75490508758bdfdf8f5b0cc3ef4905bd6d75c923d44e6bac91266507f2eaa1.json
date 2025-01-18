@@ -1,0 +1,86 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        select \n            pp2.id po_id,\n            pw.id wo_id,\n            pp2.po_name,\n            pw.wo_name,\n            pw.wo_name || ' | ' || pp2.po_name project_name,\n            pw.survey_md_price,\n            false survey_md_check,\n            pp2.material_price,\n            false material_check,\n            pp2.service_price,\n            false service_check,\n            status\n        from progression_po pp \n        left join project_po pp2 on pp.po_id = pp2.id\n        left join project_wo pw on pp2.wo_id = pw.id\n        where status = 'Done';\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "po_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "wo_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 2,
+        "name": "po_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "wo_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "project_name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "survey_md_price",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 6,
+        "name": "survey_md_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 7,
+        "name": "material_price",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 8,
+        "name": "material_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 9,
+        "name": "service_price",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 10,
+        "name": "service_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 11,
+        "name": "status",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      true,
+      true,
+      true,
+      true,
+      null,
+      true,
+      null,
+      true,
+      null,
+      true,
+      null,
+      true
+    ]
+  },
+  "hash": "cf75490508758bdfdf8f5b0cc3ef4905bd6d75c923d44e6bac91266507f2eaa1"
+}

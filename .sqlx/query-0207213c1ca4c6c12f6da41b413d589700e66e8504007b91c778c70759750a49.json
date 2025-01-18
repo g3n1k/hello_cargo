@@ -1,0 +1,52 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        DELETE FROM public.recon WHERE id = $1\n        returning *",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "po_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 2,
+        "name": "survey_md_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 3,
+        "name": "material_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 4,
+        "name": "service_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 5,
+        "name": "last_update",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "0207213c1ca4c6c12f6da41b413d589700e66e8504007b91c778c70759750a49"
+}

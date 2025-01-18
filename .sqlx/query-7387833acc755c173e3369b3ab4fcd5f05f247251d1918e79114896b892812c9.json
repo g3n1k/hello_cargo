@@ -1,0 +1,52 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT \n        *\n        FROM public.recon\n        WHERE po_id = $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "po_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 2,
+        "name": "survey_md_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 3,
+        "name": "material_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 4,
+        "name": "service_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 5,
+        "name": "last_update",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "7387833acc755c173e3369b3ab4fcd5f05f247251d1918e79114896b892812c9"
+}

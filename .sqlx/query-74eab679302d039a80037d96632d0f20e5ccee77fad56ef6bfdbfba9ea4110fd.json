@@ -1,0 +1,22 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n                    SELECT array_agg(aa.name) as areas\n                    FROM user_area_assigned uaa\n                    JOIN region2 aa ON uaa.area_assigned_id = aa.id\n                    WHERE uaa.user_id = $1\n                    GROUP BY uaa.user_id\n                    ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "areas",
+        "type_info": "VarcharArray"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4"
+      ]
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "74eab679302d039a80037d96632d0f20e5ccee77fad56ef6bfdbfba9ea4110fd"
+}

@@ -1,72 +1,41 @@
-use actix_web::{web, App, HttpServer, Responder, HttpResponse};
-use serde::{Deserialize, Serialize};
+use actix_web::{web, App, HttpServer, http::header};  
+use sqlx::PgPool;
+use wfm_be::*;
+use std::env;
+use actix_cors::Cors; 
 
-#[derive(Serialize, Deserialize)]
-struct Item {
-    id: u32,
-    name: String,
-    price: f64,
-}
 
-// In-memory data store
-static mut ITEMS: Vec<Item> = Vec::new();
 
-// Health check endpoint
-async fn health_check() -> impl Responder {
-    HttpResponse::Ok().body("API is running v:05 trigger webhook")
-}
-
-// Get all items
-async fn get_items() -> impl Responder {
-    unsafe { HttpResponse::Ok().json(&ITEMS) }
-}
-
-// Add a new item
-async fn add_item(item: web::Json<Item>) -> impl Responder {
-    unsafe {
-        ITEMS.push(item.into_inner());
-    }
-    HttpResponse::Created().body("Item added")
-}
-
-// Update an item by ID
-async fn update_item(id: web::Path<u32>, item: web::Json<Item>) -> impl Responder {
-    let item_id = id.into_inner();
-    unsafe {
-        if let Some(existing_item) = ITEMS.iter_mut().find(|i| i.id == item_id) {
-            existing_item.name = item.name.clone();
-            existing_item.price = item.price;
-            return HttpResponse::Ok().body("Item updated");
-        }
-    }
-    HttpResponse::NotFound().body("Item not found")
-}
-
-// Delete an item by ID
-async fn delete_item(id: web::Path<u32>) -> impl Responder {
-    let item_id = id.into_inner();
-    unsafe {
-        let len_before = ITEMS.len();
-        ITEMS.retain(|i| i.id != item_id);
-        if ITEMS.len() < len_before {
-            return HttpResponse::Ok().body("Item deleted");
-        }
-    }
-    HttpResponse::NotFound().body("Item not found")
-}
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("Starting server on 127.0.0.1:8081");
-    HttpServer::new(|| {
+    dotenv::dotenv().ok();
+
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    let pool = PgPool::connect(&database_url).await.expect("Failed to connect to database");
+
+    let url = "0.0.0.0:8080";
+    println!("wfm running in: {url}");
+
+    HttpServer::new(move || {
+        let cors = Cors::permissive()
+        .allowed_origin("http://localhost:5173") 
+        .allowed_origin("http://192.168.1.2:5173")
+        .allowed_methods(vec!["GET", "POST", "PUT", "DELETE"])
+        .allowed_headers(vec![
+           header::AUTHORIZATION,
+           header::ACCEPT,
+           header::CONTENT_TYPE,
+            ])
+            .max_age(3600);
+
         App::new()
-            .route("/health", web::get().to(health_check))
-            .route("/items", web::get().to(get_items))
-            .route("/items", web::post().to(add_item))
-            .route("/items/{id}", web::put().to(update_item))
-            .route("/items/{id}", web::delete().to(delete_item))
-    })
-    .bind("0.0.0.0:8081")? // Ganti ke port yang berbeda
+            .app_data(web::Data::new(pool.clone()))
+            // .wrap(Auth)
+            .wrap(cors)
+            .configure(config)
+        })
+    .bind(url)?
     .run()
     .await
 }

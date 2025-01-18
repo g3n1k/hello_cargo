@@ -1,0 +1,128 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT \n             u.id,\n            u.username,\n            u.full_name,\n            u.email,\n            u.phone_number,\n            u.employee_id,\n            u.status,\n            u.last_login,\n            u.date_of_birth,\n            u.join_date, \n            u.gender,\n            u.address,\n            u.profile_picture,\n            u.notes,\n            u.created_at,\n            u.updated_at,\n            r.role,\n            t.team_name,\n            array_agg(DISTINCT aa.name) as assigned_areas\n        FROM users_new u\n        LEFT JOIN role r ON u.role_id = r.id\n        LEFT JOIN team t ON u.team_id = t.id\n        LEFT JOIN user_area_assigned uaa ON u.id = uaa.user_id\n        LEFT JOIN region2 aa ON uaa.area_assigned_id = aa.id\n        GROUP BY u.id, r.role, t.team_name\n        ORDER BY u.id\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "username",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "full_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "email",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "phone_number",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "employee_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 6,
+        "name": "status",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 7,
+        "name": "last_login",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 8,
+        "name": "date_of_birth",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 9,
+        "name": "join_date",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 10,
+        "name": "gender",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 11,
+        "name": "address",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 12,
+        "name": "profile_picture",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 13,
+        "name": "notes",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 14,
+        "name": "created_at",
+        "type_info": "Timestamp"
+      },
+      {
+        "ordinal": 15,
+        "name": "updated_at",
+        "type_info": "Timestamp"
+      },
+      {
+        "ordinal": 16,
+        "name": "role",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 17,
+        "name": "team_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 18,
+        "name": "assigned_areas",
+        "type_info": "VarcharArray"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      null
+    ]
+  },
+  "hash": "116db9f8fb9293c2ea1a359ef295ebc380f5637fa324be84512a95d4d798f171"
+}

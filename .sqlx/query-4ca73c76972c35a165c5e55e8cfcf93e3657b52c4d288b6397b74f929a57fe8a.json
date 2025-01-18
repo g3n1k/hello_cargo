@@ -1,0 +1,77 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        UPDATE public.project_wo\n        SET\n            wo_name = $2,\n            project_type_id = $3,\n            region_id = $4,\n            user_id = $5,\n            survey_md_doc = $6,\n            wo_doc = $7,\n            survey_md_price = $8\n        WHERE id = $1\n        RETURNING *\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "wo_code",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "wo_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "project_type_id",
+        "type_info": "Int2"
+      },
+      {
+        "ordinal": 4,
+        "name": "region_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 5,
+        "name": "user_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 6,
+        "name": "survey_md_doc",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 7,
+        "name": "wo_doc",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 8,
+        "name": "survey_md_price",
+        "type_info": "Int4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Varchar",
+        "Int2",
+        "Int4",
+        "Int4",
+        "Varchar",
+        "Varchar",
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "4ca73c76972c35a165c5e55e8cfcf93e3657b52c4d288b6397b74f929a57fe8a"
+}

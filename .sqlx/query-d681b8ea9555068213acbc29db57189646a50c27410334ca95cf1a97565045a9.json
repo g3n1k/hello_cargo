@@ -1,0 +1,57 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        UPDATE public.recon\n        SET\n            po_id=$1,\n            survey_md_check=$2,\n            material_check=$3,\n            service_check=$4,\n            last_update=$6\n        WHERE id = $5\n        RETURNING *\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "po_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 2,
+        "name": "survey_md_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 3,
+        "name": "material_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 4,
+        "name": "service_check",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 5,
+        "name": "last_update",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Bool",
+        "Bool",
+        "Bool",
+        "Int4",
+        "Varchar"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "d681b8ea9555068213acbc29db57189646a50c27410334ca95cf1a97565045a9"
+}

@@ -1,0 +1,91 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        UPDATE public.project_po\n        SET\n            po_name = $2,\n            user_id = $3,\n            cable = $4,\n            pole = $5,\n            port = $6,\n            po_doc = $7,\n            material_price = $8,\n            service_price = $9,\n            wo_id = $10\n        WHERE id = $1\n        RETURNING *\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "po_code",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "po_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "user_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 4,
+        "name": "cable",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 5,
+        "name": "pole",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 6,
+        "name": "port",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 7,
+        "name": "material_price",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 8,
+        "name": "service_price",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 9,
+        "name": "po_doc",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 10,
+        "name": "wo_id",
+        "type_info": "Int4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Varchar",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Varchar",
+        "Int4",
+        "Int4",
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "a0aa7eafef9e4ed885d725b484e02faeedbc71d5632b0f3c53709b4893014937"
+}

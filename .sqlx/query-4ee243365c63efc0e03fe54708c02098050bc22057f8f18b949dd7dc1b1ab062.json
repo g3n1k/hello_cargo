@@ -1,0 +1,43 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        UPDATE public.project\n        SET\n            po_id = $2,\n            wo_id = $3,\n            project_type_id = $4,\n            region_id = $5,\n            unit = $6,\n            cable_volume = $7,\n            pole = $8,\n            port = $9,\n            service_price = $10,\n            material_price = $11,\n            deploy_service_price = $12,\n            description = $13,\n            attachment_path = $14,\n            service = $15,\n            material = $16,\n            status = $17,\n            user_id = $18,\n            phase = $19,\n            survey_md_doc = $20,\n            wo_doc = $21,\n            po_doc = $22\n        WHERE id = $1\n        RETURNING id\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Varchar",
+        "Varchar",
+        "Int2",
+        "Int4",
+        "Varchar",
+        "Int2",
+        "Int2",
+        "Int2",
+        "Int8",
+        "Int8",
+        "Int8",
+        "Varchar",
+        "Varchar",
+        "Bool",
+        "Bool",
+        "Varchar",
+        "Int4",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "4ee243365c63efc0e03fe54708c02098050bc22057f8f18b949dd7dc1b1ab062"
+}

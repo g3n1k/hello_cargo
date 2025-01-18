@@ -1,0 +1,76 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        INSERT INTO public.project_wo \n            (wo_name,project_type_id,region_id,user_id,survey_md_doc,wo_doc,survey_md_price)\n        VALUES \n            ($1, $2, $3, $4, $5, $6, $7) \n        returning *",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "wo_code",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "wo_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "project_type_id",
+        "type_info": "Int2"
+      },
+      {
+        "ordinal": 4,
+        "name": "region_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 5,
+        "name": "user_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 6,
+        "name": "survey_md_doc",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 7,
+        "name": "wo_doc",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 8,
+        "name": "survey_md_price",
+        "type_info": "Int4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Varchar",
+        "Int2",
+        "Int4",
+        "Int4",
+        "Varchar",
+        "Varchar",
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "a47910e31073e19d46f22cbc85b37cd8a052ad1c6da129ffdc6090e783878fd5"
+}

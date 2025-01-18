@@ -1,0 +1,152 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n            UPDATE users_new SET\n                username = $1, full_name = $2, email = $3,\n                phone_number = $4, role_id = $5, area_assigned_id = $6,\n                team_id = $7, employee_id = $8, status = $9,\n                date_of_birth = $10, join_date = $11, last_login = $12,\n                gender = $13, address = $14, profile_picture = $15,\n                notes = $16, updated_at = NOW()\n            WHERE id = $17\n            RETURNING *\n            ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "username",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "password",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "full_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "email",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "phone_number",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 6,
+        "name": "role_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 7,
+        "name": "area_assigned_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 8,
+        "name": "team_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 9,
+        "name": "employee_id",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 10,
+        "name": "status",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 11,
+        "name": "date_of_birth",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 12,
+        "name": "join_date",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 13,
+        "name": "last_login",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 14,
+        "name": "gender",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 15,
+        "name": "address",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 16,
+        "name": "profile_picture",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 17,
+        "name": "notes",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 18,
+        "name": "created_at",
+        "type_info": "Timestamp"
+      },
+      {
+        "ordinal": 19,
+        "name": "updated_at",
+        "type_info": "Timestamp"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Int4"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "6aee5075a95b056c6622afe1ba0a1f003c3751e3d17a55dd025cf5d31f82ec91"
+}

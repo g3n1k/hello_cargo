@@ -1,9 +1,25 @@
 [package]
-name = "my_app"
+name = "wfm-be"
 version = "0.1.0"
 edition = "2021"
 
+[profile.release]
+strip = true
+
 [dependencies]
-actix-web = "4"
+actix-web = "4.0"
+actix-cors = "0.6"
+actix-rt = "2.5"
+actix-service = "2.0"
+sqlx = { version = "0.7", features = ["runtime-tokio", "tls-rustls", "postgres", "time", "chrono"] }
+warp = "0.3"
+tokio = { version = "1", features = ["full"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+dotenv = "0.15"
+jsonwebtoken = "8.1"
+bcrypt = "0.12"
+chrono = {version="0.4.38" , features = ["serde"]}
+futures = "0.3"
+actix-web-httpauth = "0.8"
+swagger = "6.5.0"
