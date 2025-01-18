@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker Image
-                    sh 'docker build -f Dockerfile.ori -t my-rust-app .'
+                    sh 'docker build -t my-rust-app .'
                 }
             }
         }
