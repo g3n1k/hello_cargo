@@ -25,7 +25,7 @@ pipeline {
                 script {
                     // Build Docker Image
                     //sh 'docker build -t my-rust-app .'
-                    sh 'docker build --build-arg $(cat /var/jenkins_home/workspace/env/WFM-BE.env | xargs)  -t my-rust-app .'
+                    sh 'source /var/jenkins_home/workspace/env/WFM-BE.env && docker build --build-arg SQLX_OFFLINE=true -t my-rust-app .'
                 }
             }
         }
