@@ -24,7 +24,8 @@ pipeline {
             steps {
                 script {
                     // Build Docker Image
-                    sh 'docker build -t my-rust-app .'
+                    //sh 'docker build -t my-rust-app .'
+                    sh 'docker build --build-arg $(cat /var/jenkins_home/workspace/env/WFM-BE.env | xargs)'
                 }
             }
         }

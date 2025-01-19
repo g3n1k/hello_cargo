@@ -1,3 +1,13 @@
+# Menerima argumen build
+ARG DATABASE_URL
+ARG JWT_SECRET
+ARG SQLX_OFFLINE
+
+# Set variabel lingkungan
+ENV DATABASE_URL=${DATABASE_URL}
+ENV JWT_SECRET=${JWT_SECRET}
+ENV SQLX_OFFLINE=${SQLX_OFFLINE}
+
 # Stage 1: Build
 FROM rust:latest AS builder
 
