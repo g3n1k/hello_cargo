@@ -23,7 +23,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clone repository dari Git
-                git branch: 'cicd', url: 'https://github.com/Smartelco/WFM-BE.git'
+                // git branch: 'cicd', url: 'https://github.com/Smartelco/WFM-BE.git'
+                git branch: 'cicd', url: 'https://github.com/g3n1k/hello_cargo.git'
             }
         }
 
