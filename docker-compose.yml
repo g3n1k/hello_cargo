@@ -1,5 +1,0 @@
-services:
-  rustc:
-    image: rust:1.84
-    volumes:
-      - ".:/app"
