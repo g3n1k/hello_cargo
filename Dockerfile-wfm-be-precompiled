@@ -1,0 +1,25 @@
+# Select build image
+FROM rust:1.84
+
+# Install required tools including sqlx-cli
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libssl-dev pkg-config iputils-ping && \
+    cargo install sqlx-cli --no-default-features --features postgres && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create a new empty shell project
+WORKDIR /
+RUN USER=root cargo new --bin app
+
+# Copy over your manifests
+WORKDIR /app
+COPY ./Cargo.lock ./Cargo.lock
+COPY ./Cargo.toml ./Cargo.toml
+
+# This build step will cache your dependencies
+RUN cargo build --release
+RUN rm -rf src
+RUN rm -rf .git*
+RUN rm -rf target
+# Default command (optional)
+# CMD ["./target/release/my_project"]

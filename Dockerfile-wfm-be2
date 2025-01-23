@@ -1,0 +1,40 @@
+# apakah kita bisa membuild
+# Menerima argumen build
+# ARG DATABASE_URL
+# ARG JWT_SECRET
+ARG SQLX_OFFLINE
+
+# Stage 1: Build
+FROM rust:1.84
+
+# Set variabel lingkungan
+# ENV DATABASE_URL=${DATABASE_URL}
+# ENV JWT_SECRET=${JWT_SECRET}
+ENV SQLX_OFFLINE=true
+
+RUN cargo install sqlx-cli -y
+
+WORKDIR /app
+
+# Copy source code and dependencies
+
+COPY . .
+WORKDIR /app/src
+
+RUN cargo build --release
+# CMD ["./target/release/wfm-be"]
+
+# # Stage 2: Final image
+# FROM debian:bookworm-slim
+
+# RUN apt-get update && apt-get install -y \
+#     libssl-dev \
+#     && rm -rf /var/lib/apt/lists/*
+
+# WORKDIR /app
+
+# # Copy the binary from the build stage
+# COPY --from=builder /usr/src/app/target/release/wfm-be /app/
+
+# # Set executable
+# CMD ["./wfm-be"]
