@@ -1,0 +1,21 @@
+FROM rust:1.84
+
+RUN cargo install sqlx-cli
+
+WORKDIR /app
+
+COPY ./Cargo.lock ./
+COPY ./Cargo.toml ./
+
+RUN mkdir src && echo "fn main() {}" > src/main.rs
+
+RUN cargo build --release
+
+COPY ./examples ./examples
+COPY ./.sqlx ./.sqlx 
+COPY ./.env ./.env
+COPY ./src ./src
+
+RUN cargo build --release
+
+CMD ./target/release/wfm-be

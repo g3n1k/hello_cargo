@@ -1,9 +1,7 @@
 use actix_web::HttpResponse;
 use sqlx::PgPool;
 
-use crate::{check_progress_po_by_id, delete_progress_po, get_user_credential, repo_progress_po, repository, update_progress_po, ApiResponse, CreateProgressionPO, ProgressionPO, ProgressionPOView};
-
-use super::MessageResponse;
+use crate::{MessageResponse, check_progress_po_by_id, delete_progress_po, get_user_credential, repo_progress_po, repository, update_progress_po, ApiResponse, CreateProgressionPO, ProgressionPO, ProgressionPOView};
 
 impl ProgressionPO {
     pub async fn get(pool: &PgPool, user_id: i32) -> HttpResponse {

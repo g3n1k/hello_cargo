@@ -1,9 +1,7 @@
 use actix_web::HttpResponse;
 use sqlx::PgPool;
 
-use crate::{repo_project_tracking, repository::{check_project_tracking_by_id, create_project_tracking, delete_project_tracking, update_project_tracking}, ApiResponse, CreateProjectTracking, GetProjectTracking, ProjectTracking, UpdateProjectTracking};
-
-use super::MessageResponse;
+use crate::{MessageResponse, repo_project_tracking, repository::{check_project_tracking_by_id, create_project_tracking, delete_project_tracking, update_project_tracking}, ApiResponse, CreateProjectTracking, GetProjectTracking, ProjectTracking, UpdateProjectTracking};
 
 impl ProjectTracking {
     pub async fn create(req: CreateProjectTracking, pool: &PgPool) -> HttpResponse {

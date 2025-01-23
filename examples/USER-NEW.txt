@@ -1,0 +1,532 @@
+-----------------------------READ ALL USER----------------------------- 
+
+GET : http://localhost:8080/api/users-new
+RESPONSE : {
+  "status": true,
+  "message": "Successfully retrieved 4 users",
+  "data": [
+    {
+      "id": 9,
+      "username": "admin123",
+      "full_name": "Budi Santoso",
+      "email": "admin@smartelco.com",
+      "phone_number": "081234567890",
+      "employee_id": "EMP001",
+      "status": "active",
+      "date_of_birth": "1980-01-01",
+      "join_date": "2023-01-01",
+      "last_login": "2024-06-28 09:00:00",
+      "gender": "male",
+      "address": "Jakarta Selatan",
+      "profile_picture": "/images/admin123.png",
+      "notes": "Super Admin",
+      "created_at": "2024-12-16T14:50:23.919162",
+      "updated_at": "2024-12-16T14:50:23.919162",
+      "role": "admin",
+      "team_name": "Network Team 1",
+      "assigned_areas": [
+        "Bandung",
+        "Surabaya"
+      ]
+    },
+    {
+      "id": 10,
+      "username": "supervisor1",
+      "full_name": "Andi Wijaya",
+      "email": "andi@smartelco.com",
+      "phone_number": "081234567891",
+      "employee_id": "EMP002",
+      "status": "active",
+      "date_of_birth": "1985-02-15",
+      "join_date": "2023-02-01",
+      "last_login": "2024-06-28 09:30:00",
+      "gender": "male",
+      "address": "Jakarta Selatan",
+      "profile_picture": "/images/supervisor1.png",
+      "notes": "Supervisor Area Jakarta",
+      "created_at": "2024-12-16T14:50:23.919162",
+      "updated_at": "2024-12-16T14:50:23.919162",
+      "role": "pm",
+      "team_name": "Network Team 1",
+      "assigned_areas": [
+        "Jakarta Barat",
+        "Jakarta Selatan"
+      ]
+    },
+    {
+      "id": 11,
+      "username": "tech_jkt1",
+      "full_name": "Wahyu Prasetyo",
+      "email": "wahyu@smartelco.com",
+      "phone_number": "081234567893",
+      "employee_id": "EMP003",
+      "status": "active",
+      "date_of_birth": "1990-05-01",
+      "join_date": "2023-03-01",
+      "last_login": "2024-06-28 09:45:00",
+      "gender": "male",
+      "address": "Jakarta Selatan",
+      "profile_picture": "/images/tech_jkt1.png",
+      "notes": "Teknisi Fiber Optik",
+      "created_at": "2024-12-16T14:50:23.919162",
+      "updated_at": "2024-12-16T14:50:23.919162",
+      "role": "pm",
+      "team_name": "Network Team 1",
+      "assigned_areas": [
+        "Jakarta Selatan"
+      ]
+    },
+    {
+      "id": 12,
+      "username": "coordinator1",
+      "full_name": "Siti Rahmawati",
+      "email": "siti@smartelco.com",
+      "phone_number": "081234567895",
+      "employee_id": "EMP004",
+      "status": "active",
+      "date_of_birth": "1987-03-21",
+      "join_date": "2023-04-01",
+      "last_login": "2024-06-28 10:00:00",
+      "gender": "female",
+      "address": "Jakarta Barat",
+      "profile_picture": "/images/coordinator1.png",
+      "notes": "Koordinator Area Barat",
+      "created_at": "2024-12-16T14:50:23.919162",
+      "updated_at": "2024-12-16T14:50:23.919162",
+      "role": "tl",
+      "team_name": "Network Team 2",
+      "assigned_areas": [
+        "Jakarta Barat"
+      ]
+    }
+  ]
+}
+
+-----------------------------READ USER BY ID----------------------------- 
+
+GET : http://localhost:8080/api/users-new/21
+RESPONSE {
+  "status": true,
+  "message": "User found",
+  "data": {
+    "id": 21,
+    "username": "john_doe BBa",
+    "full_name": "John Doe",
+    "email": "johnaAa@example.com",
+    "phone_number": "081234567890",
+    "employee_id": "EMP005933",
+    "status": "active",
+    "date_of_birth": "1990-01-01",
+    "join_date": "2024-01-01",
+    "last_login": "2024-03-21 10:00:00",
+    "gender": "male",
+    "address": "Jakarta",
+    "profile_picture": "/images/john.png",
+    "notes": "New employee",
+    "created_at": "2024-12-16T11:37:06.802049",
+    "updated_at": "2024-12-16T11:37:06.802049",
+    "role": "admin",
+    "team_name": "Network Team 1",
+    "assigned_areas": [
+      "Bandung",
+      "Jakarta Barat",
+      "Jakarta Selatan"
+    ]
+  }
+}
+
+
+-----------------------------CREATE USER----------------------------- 
+
+
+POST : http://localhost:8080/api/users-new
+BODY : { "user": {
+  "id":0,
+    "username": "john_doe BBa",
+    "password": "secure123",
+    "full_name": "John Doe",
+    "email": "johnaAa@example.com",
+    "phone_number": "081234567890",
+    "role_id": 1,
+    "area_assigned_id": 1,
+    "team_id": 1,
+    "employee_id": "EMP005933",
+    "status": "active",
+    "date_of_birth": "1990-01-01",
+    "join_date": "2024-01-01",
+    "last_login": "2024-03-21 10:00:00",
+    "gender": "male",
+    "address": "Jakarta",
+    "profile_picture": "/images/john.png",
+    "notes": "New employee"
+
+},
+"area_ids": [1, 2, 3] 
+}
+
+RESPONSE : {
+  "status": true,
+  "message": "User created successfully",
+  "data": {
+    "id": 13,
+    "username": "john_doe",
+    "password": "$2b$12$FIHsdkeGYNGy1JdwVhjSCuCcACbZP4l8AQ2UVSwpJhnrJPyVAZl1u",
+    "full_name": "John Doe",
+    "email": "john@example.com",
+    "phone_number": "081234567890",
+    "role_id": 1,
+    "area_assigned_id": 1,
+    "team_id": 1,
+    "employee_id": "EMP005",
+    "status": "active",
+    "date_of_birth": "1990-01-01",
+    "join_date": "2024-01-01",
+    "last_login": "2024-03-21T10:00:00Z",
+    "gender": "male",
+    "address": "Jakarta",
+    "profile_picture": "/images/john.png",
+    "notes": "New employee",
+    "created_at": "2024-12-16T10:01:14.050174",
+    "updated_at": "2024-12-16T10:01:14.050174"
+  }
+}
+
+
+-----------------------------UPDATE USER----------------------------- 
+
+
+PUT : http://localhost:8080/api/users-new/13
+BODY : { "user": {
+  "id":13,
+    "username": "john_doe BBa",
+    "password": "secure123",
+    "full_name": "John Doe",
+    "email": "johnaAa@example.com",
+    "phone_number": "081234567890",
+    "role_id": 1,
+    "area_assigned_id": 1,
+    "team_id": 1,
+    "employee_id": "EMP005933",
+    "status": "active",
+    "date_of_birth": "1990-01-01",
+    "join_date": "2024-01-01",
+    "last_login": "2024-03-21 10:00:00",
+    "gender": "male",
+    "address": "Jakarta",
+    "profile_picture": "/images/john.png",
+    "notes": "New employee"
+
+},
+"area_ids": [1, 2, 3] 
+}
+
+RESPONSE : {
+  "status": true,
+  "message": "User updated successfully",
+  "data": {
+    "id": 13,
+    "username": "john_doeLLL",
+    "password": "$2b$12$EzrbP91epj6AO3YzQWC0YeKJAgKAMX8BVZOCboG9TDdwsKgWlFx9m",
+    "full_name": "John Doe dada",
+    "email": "john@example.com",
+    "phone_number": "081234567890",
+    "role_id": 2,
+    "area_assigned_id": 1,
+    "team_id": 1,
+    "employee_id": "EMP00521",
+    "status": "active",
+    "date_of_birth": "1990-01-01",
+    "join_date": "2024-01-01",
+    "last_login": "2024-03-21T10:00:00Z",
+    "gender": "maled",
+    "address": "Jakartaa",
+    "profile_picture": "/images/johns.png",
+    "notes": "New employeee",
+    "created_at": "2024-12-16T10:01:14.050174",
+    "updated_at": "2024-12-16T10:01:14.050174"
+  }
+}
+
+
+-----------------------------DELETE USER----------------------------- 
+
+
+DELETE : http://localhost:8080/api/users-new/13
+RESPONSE : {
+  "status": true,
+  "message": "User deleted successfully",
+  "data": null
+}
+
+
+-----------------------------READ AREA ALL----------------------------- 
+
+
+GET : http://localhost:8080/api/areas
+RESPONSE :{
+  "status": true,
+  "message": "Areas retrieved successfully",
+  "data": [
+    {
+      "id": 1,
+      "area_name": "Jakarta Selatan"
+    },
+    {
+      "id": 2,
+      "area_name": "Jakarta Barat"
+    },
+    {
+      "id": 3,
+      "area_name": "Bandung"
+    },
+    {
+      "id": 4,
+      "area_name": "Surabaya"
+    }
+  ]
+}
+
+
+-----------------------------CREATE AREA ALL----------------------------- 
+
+
+POST : http://localhost:8080/api/areas
+BODY : "Nama Area Baru"
+RESPONSE : {
+  "status": true,
+  "message": "Area created successfully",
+  "data": {
+    "id": 5,
+    "area_name": "Nama Area Baru"
+  }
+}
+
+
+-----------------------------UPDATE AREA ----------------------------- 
+
+
+PUT : http://localhost:8080/api/areas/5
+BODY : "Nama Area update"
+RESPONSE :{
+  "status": true,
+  "message": "Area updated successfully",
+  "data": {
+    "id": 5,
+    "area_name": "Nama Area update"
+  }
+}
+
+
+
+-----------------------------DELETE AREA ----------------------------- 
+
+
+DELETE : http://localhost:8080/api/areas/5
+RESPONSE : {
+  "status": true,
+  "message": "Area deleted successfully",
+  "data": null
+}
+
+
+
+-----------------------------READ TEAM----------------------------- 
+
+
+GET : http://localhost:8080/api/teams
+RESPONSE :{
+  "status": true,
+  "message": "Teams retrieved successfully",
+  "data": [
+    {
+      "id": 1,
+      "team_name": "Network Team 1"
+    },
+    {
+      "id": 2,
+      "team_name": "Network Team 2"
+    },
+    {
+      "id": 3,
+      "team_name": "Maintenance Team 1"
+    },
+    {
+      "id": 4,
+      "team_name": "Fiber Optic Team"
+    }
+  ]
+}
+
+
+-----------------------------CREATE TEAM----------------------------- 
+
+
+POST : http://localhost:8080/api/teams
+BODY :"Nama Teams"
+RESPONSE :{
+  "status": true,
+  "message": "Team created successfully",
+  "data": {
+    "id": 5,
+    "team_name": "Nama Teams"
+  }
+}
+
+
+-----------------------------UPDATE TEAM----------------------------- 
+
+
+PUT : http://localhost:8080/api/teams/1
+BODY : "Nama Teams update"
+RESPONSE :{
+  "status": true,
+  "message": "Team updated successfully",
+  "data": {
+    "id": 5,
+    "team_name": "Nama Teams update"
+  }
+}
+
+
+
+-----------------------------DELETE TEAM----------------------------- 
+
+
+DELETE : http://localhost:8080/api/teams/5
+RESPONSE :{
+  "status": true,
+  "message": "Team deleted successfully",
+  "data": null
+}
+
+
+
+
+
+
+Update error: Database(PgDatabaseError { severity: Error, code: "42703", message: "record \"new\" has no field \"po\"", detail: None, hint: None, position: None, where: Some("SQL expression \"OLD.po_id IS NULL AND NEW.po IS NOT NULL\"\nPL/pgSQL function generate_project_codes() line 9 at IF"), schema: None, table: None, column: None, data_type: None, constraint: None, file: Some("pl_exec.c"), line: Some(5601), routine: Some("plpgsql_exec_get_datum_type_info") })
+Update error: Database(PgDatabaseError { severity: Error, code: "22001", message: "value too long for type character varying(20)", detail: None, hint: None, position: None, where: Some("PL/pgSQL function generate_project_codes() line 7 at assignment"), schema: None, table: None, column: None, data_type: None, constraint: None, file: Some("varchar.c"), line: Some(632), routine: Some("varchar") })      
+
+
+-----FIX-----
+
+       CREATE OR REPLACE FUNCTION generate_project_codes()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Example logic to generate project codes
+    -- Ensure you are using the correct column names
+    IF NEW.po_id IS NOT NULL THEN
+        -- Your logic here, for example:
+        NEW.po_code := 'GeneratedCode-' || NEW.po_id; -- Example of generating a code
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+---------NEW---------
+
+-- public.project definition
+
+-- Drop table
+
+-- DROP TABLE public.project;
+
+CREATE TABLE public.project (
+	id serial4 NOT NULL,
+	wo_id varchar NULL,
+	po_id varchar NULL,
+	project_type_id int2 NULL,
+	region_id int4 NULL,
+	cable_volume int2 NULL,
+	pole int2 NULL,
+	unit varchar NULL,
+	port int2 NULL,
+	service_price int8 NULL,
+	material_price int8 NULL,
+	description varchar NULL,
+	attachment_path varchar NULL,
+	service bool DEFAULT false NULL,
+	material bool DEFAULT false NULL,
+	status varchar NULL,
+	user_id int4 NULL,
+	inc_material_price int8 NULL,
+	deploy_service_price int8 NULL,
+	phase varchar NULL,
+	survey_md_doc varchar NULL,
+	wo_doc varchar NULL,
+	po_doc varchar NULL,
+	wo_code varchar(200) NULL,
+	po_code varchar(200) NULL,
+	CONSTRAINT project_unique UNIQUE (id)
+);
+
+-- Table Triggers
+
+create trigger project_codes_trigger before
+insert
+    or
+update
+    on
+    public.project for each row execute function generate_project_codes();
+
+
+-- public.project foreign keys
+
+ALTER TABLE public.project ADD CONSTRAINT project_project_type_fk FOREIGN KEY (project_type_id) REFERENCES public.project_type(id);
+ALTER TABLE public.project ADD CONSTRAINT project_region2_fk FOREIGN KEY (region_id) REFERENCES public.region2(id);
+ALTER TABLE public.project ADD CONSTRAINT project_users_new_fk FOREIGN KEY (user_id) REFERENCES public.users_new(id);
+
+
+
+
+-----OLD-----
+
+
+
+CREATE TABLE public.project (
+	id serial4 NOT NULL,
+	wo_id varchar NULL,
+	po_id varchar NULL,
+	project_type_id int2 NULL,
+	region_id int4 NULL,
+	cable_volume int2 NULL,
+	pole int2 NULL,
+	unit varchar NULL,
+	port int2 NULL,
+	service_price int8 NULL,
+	material_price int8 NULL,
+	description varchar NULL,
+	attachment_path varchar NULL,
+	service bool DEFAULT false NULL,
+	material bool DEFAULT false NULL,
+	status varchar NULL,
+	user_id int4 NULL,
+	inc_material_price int8 NULL,
+	deploy_service_price int8 NULL,
+	phase varchar NULL,
+	survey_md_doc varchar NULL,
+	wo_doc varchar NULL,
+	po_doc varchar NULL,
+	wo_code varchar(20) NULL,
+	po_code varchar(20) NULL,
+	CONSTRAINT project_unique UNIQUE (id)
+);
+
+-- Table Triggers
+
+create trigger project_codes_trigger before
+insert
+    or
+update
+    on
+    public.project for each row execute function generate_project_codes();
+
+
+-- public.project foreign keys
+
+ALTER TABLE public.project ADD CONSTRAINT project_project_type_fk FOREIGN KEY (project_type_id) REFERENCES public.project_type(id);
+ALTER TABLE public.project ADD CONSTRAINT project_region2_fk FOREIGN KEY (region_id) REFERENCES public.region2(id);
+ALTER TABLE public.project ADD CONSTRAINT project_users_new_fk FOREIGN KEY (user_id) REFERENCES public.users_new(id);

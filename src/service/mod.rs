@@ -1,5 +1,6 @@
 pub mod auth;
 pub mod billing;
+pub mod dashboard;
 // pub mod user;
 pub mod project;
 pub mod project_wo;
@@ -8,6 +9,7 @@ pub mod project_po;
 pub mod progression_wo;
 pub mod progression_po;
 pub mod recon;
+pub mod highlight;
 pub mod region;
 pub mod user_new;
 pub mod phase;

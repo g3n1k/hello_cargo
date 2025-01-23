@@ -1,10 +1,7 @@
 use actix_web::HttpResponse;
 use bcrypt::{hash,  DEFAULT_COST}; 
 use sqlx::PgPool;
-use jsonwebtoken::{encode, Header, EncodingKey};
-use chrono::{Utc, Duration};
-use bcrypt::verify;
-use crate::{get_pic, get_user_credential, model::User, repository, ApiResponse, AreaAssigned, Claims, CreateUserRequest, LoginRequest, LoginResponse, Team, UpdateUserRequest, UserAreaAssigned, UserCredential, UserDetail, PIC};
+use crate::{get_pic, get_user_credential, model::User, repository, ApiResponse, AreaAssigned, CreateUserRequest, Team, UpdateUserRequest, UserAreaAssigned, UserCredential, UserDetail, PIC};
 
 
 // User CRUD Operations
@@ -634,120 +631,6 @@ impl User {
             message: "User updated successfully with new area assignments".to_string(),
             data: Some(updated_user),
         })
-    }
-
-    pub async fn login(pool: &PgPool, login_req: LoginRequest) -> HttpResponse {
-
-        
-        // Find user by username
-        let user = match sqlx::query!(
-            r#"
-            SELECT u.*, r.role, t.team_name
-            FROM users_new u
-            LEFT JOIN role r ON u.role_id = r.id
-            LEFT JOIN team t ON u.team_id = t.id
-            WHERE u.username = $1
-            "#,
-            login_req.username
-        )
-        .fetch_optional(pool)
-        .await
-        {
-            Ok(Some(user)) => user,
-            Ok(None) => {
-                return HttpResponse::Unauthorized().json(ApiResponse {
-                    status: false,
-                    message: "Invalid credentials".to_string(),
-                    data: None::<LoginResponse>,
-                })
-            }
-            Err(e) => {
-                return HttpResponse::InternalServerError().json(ApiResponse {
-                    status: false,
-                    message: format!("Database error: {}", e),
-                    data: None::<LoginResponse>,
-                })
-            }
-        };
-
-        // Verify password
-        match verify(login_req.password.as_bytes(), &user.password) {
-            Ok(is_valid) if is_valid => {
-                // Generate JWT token
-                let expiration = Utc::now()
-                    .checked_add_signed(Duration::hours(24))
-                    .expect("valid timestamp")
-                    .timestamp();
-
-                let claims = Claims {
-                    sub: user.id,
-                    username: user.username.clone(),
-                    exp: expiration,
-                };
-
-                let token = encode(
-                    &Header::default(),
-                    &claims,
-                    &EncodingKey::from_secret(
-                        std::env::var("JWT_SECRET")
-                            .unwrap_or_else(|_| "default_secret".to_string())
-                            .as_bytes(),
-                    ),
-                )
-                .unwrap_or_else(|_| "".to_string());
-
-                // Get assigned areas
-                let areas = sqlx::query!(
-                    r#"
-                    SELECT array_agg(aa.name) as areas
-                    FROM user_area_assigned uaa
-                    JOIN region2 aa ON uaa.area_assigned_id = aa.id
-                    WHERE uaa.user_id = $1
-                    GROUP BY uaa.user_id
-                    "#,
-                    user.id
-                )
-                .fetch_optional(pool)
-                .await
-                .unwrap_or(None);
-
-                let user_detail = UserDetail {
-                    id: user.id,
-                    username: user.username,
-                    full_name: user.full_name,
-                    email: user.email,
-                    phone_number: user.phone_number,
-                    employee_id: user.employee_id,
-                    status: user.status,
-                    date_of_birth: user.date_of_birth,
-                    join_date: user.join_date,
-                    last_login: user.last_login,
-                    gender: user.gender,
-                    address: user.address,
-                    profile_picture: user.profile_picture,
-                    notes: user.notes,
-                    created_at: user.created_at,
-                    updated_at: user.updated_at,
-                    role: user.role,
-                    team_name: Some(user.team_name),
-                    assigned_areas: Some(areas.and_then(|a| a.areas).unwrap_or_default()),
-                };
-
-                HttpResponse::Ok().json(ApiResponse {
-                    status: true,
-                    message: "Login successful".to_string(),
-                    data: Some(LoginResponse {
-                        token,
-                        user: user_detail,
-                    }),
-                })
-            }
-            _ => HttpResponse::Unauthorized().json(ApiResponse {
-                status: false,
-                message: "Invalid credentials".to_string(),
-                data: None::<LoginResponse>,
-            }),
-        }
     }
 }
 

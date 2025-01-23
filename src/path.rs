@@ -19,7 +19,8 @@ pub fn config(cfg: &mut web::ServiceConfig) {
             //auth
             .service(
                 web::scope("/auth")
-                .route("/login", web::post().to(handlers::login_user_new))
+                .route("/login", web::post().to(handlers::login))
+                .route("/logout", web::get().to(handlers::logout))
             )
 
             // user
@@ -157,6 +158,27 @@ pub fn config(cfg: &mut web::ServiceConfig) {
                     .route("{user_id}", web::get().to(handlers::get_billing))
                     .route("", web::put().to(handlers::update_billing))
                 )
+
+            // Highlight
+            .service(
+                web::scope("/highlight")
+                .route("/projects/{user_id}", web::get().to(handlers::get_project_highlight))
+                .route("/progression_po/{user_id}", web::get().to(handlers::get_progression_po_highlight))
+                .route("/progression_wo/{user_id}", web::get().to(handlers::get_progression_wo_highlight))
+                .route("/recon/{user_id}", web::get().to(handlers::get_recon_highlight))
+                .route("/billing/{user_id}", web::get().to(handlers::get_billing_highlight))
+                .route("/user_management/{user_id}", web::get().to(handlers::get_user_management_highlight))
+            )
+
+            // Dashboard
+            .service(
+                web::scope("/dashboard")
+                .route("/summary_project", web::get().to(handlers::get_summary_project))
+                .route("/summary_progression", web::get().to(handlers::get_summary_progress))
+                .route("/daily_progression", web::get().to(handlers::get_daily_progress))
+                .route("/progression_updates", web::get().to(handlers::get_progression_updates))
+                .route("/regional_distribution", web::get().to(handlers::get_regional_distribution))
+            )
         )
         ;
 }

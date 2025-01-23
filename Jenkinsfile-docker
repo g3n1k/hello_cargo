@@ -4,8 +4,7 @@ pipeline {
 
     environment {
         ENV_FILE = '.env'
-        DOCKER_IMAGE = 'g3n1k/my-rust-app:latest'
-        DOCKER_COMPOSE_PATH = '/home/g3n1k/workspace/rust'
+        DOCKER_IMAGE = 'g3n1k/wfm-be:latest'
     }
 
     triggers {
@@ -13,10 +12,18 @@ pipeline {
     }
 
     stages {
+        // stage('Test Git Access') {
+        //     steps {
+        //         script {
+        //             sh "git ls-remote git@github.com:Smartelco/WFM-BE.git"
+        //         }
+        //     }
+        // }
+        
         stage('Checkout') {
             steps {
                 // Clone repository dari Git
-                git branch: 'wfm-be', url: 'https://github.com/g3n1k/hello_cargo.git'
+                git branch: 'cicd', url: 'https://github.com/Smartelco/WFM-BE.git'
             }
         }
 
@@ -24,13 +31,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker Image
-                    //sh 'docker build -t my-rust-app .'
-                    // sh 'source /var/jenkins_home/workspace/env/WFM-BE.env && docker build --build-arg SQLX_OFFLINE=true -t my-rust-app .'
-                    sh 'docker buildx build \
-  $(cat /var/jenkins_home/workspace/env/WFM-BE.env | xargs -I {} echo --build-arg {}) \
-  -t my-rust-app \
-  .'
-                    
+                    sh 'docker buildx build --env-file /var/jenkins_home/env/WFM-BE.env -t g3n1k/wfm-be .'
                 }
             }
         }
@@ -53,8 +54,8 @@ pipeline {
                         sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                         
                         // Tag dan push image
-                        sh 'docker tag my-rust-app $DOCKER_USER/my-rust-app:latest'
-                        sh 'docker push $DOCKER_USER/my-rust-app:latest'
+                        sh 'docker tag wfm-be $DOCKER_USER/wfm-be:latest'
+                        sh 'docker push $DOCKER_USER/wfm-be:latest'
                     }
                 }
             }

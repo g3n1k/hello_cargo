@@ -1,9 +1,8 @@
 use actix_web::HttpResponse;
 use sqlx::PgPool;
 
-use crate::{check_project_po, check_project_po_by_id, repo_project_po::{delete_project_po, update_project_po}, get_user_credential, insert_project_po, repository, ApiResponse, CreateProjectPO, ProjectPO, ProjectPOView};
+use crate::{MessageResponse, check_project_po, check_project_po_by_id, repo_project_po::{delete_project_po, update_project_po}, get_user_credential, insert_project_po, repository, ApiResponse, CreateProjectPO, ProjectPO, ProjectPOView};
 
-use super:: MessageResponse;
 
 
 impl ProjectPO {

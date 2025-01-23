@@ -1,0 +1,133 @@
+
+-----------------------------READ PROJECT----------------------------- 
+
+
+GET : http://localhost:8080/api/project/28
+RESPONSE :{
+  "success": true,
+  "data": [
+     {
+      "attachment_path": "",
+      "cable_volume": 500,
+      "deploy_service_price": 2000000,
+      "description": "Proses pemasangan",
+      "id": 34,
+      "inc_material_price": 5000000,
+      "material": false,
+      "material_price": 40000000,
+      "phase": "Phase 1",
+      "po_doc": "purchase_order_document.pdf",
+      "po_id": "PO-Sokaraja Kulon 1",
+      "pole": 70,
+      "port": 40,
+      "project_type": "PT2",
+      "project_type_id": 2,
+      "psa": "Ta Solo",
+      "psa_id": 81,
+      "region_id": 81,
+      "regional": "Jawa Tengah",
+      "regional_id": 1,
+      "service": true,
+      "service_price": 11000000,
+      "status": "MENUNGGU PROSES",
+      "survey_md_doc": "survey_document.pdf",
+      "unit": "Sidamukti",
+      "witel": "Witel Solo",
+      "witel_id": 9,
+      "wo_doc": "work_order_document.pdf",
+      "wo_id": "WO-Sokaraja Kulon 1"
+    }
+  ]
+}
+
+
+-----------------------------CREATE PROJECT----------------------------- 
+
+
+POST : http://localhost:8080/api/project
+BODY : 
+{
+  "po_id": "PO-Sokaraja Kulon",
+  "wo_id": "WO-Sokaraja Kulon",
+  "project_type_id": 2,
+  "regional": 1,
+  "witel": 9,
+  "psa": 81,
+  "pic": 28,
+  "unit": "Sidamukti",
+  "cable_volume": 500,
+  "pole": 70,
+  "port": 40,
+  "service_price": 11000000,
+  "material_price": 40000000,
+  "inc_material_price": 5000000,
+  "deploy_service_price": 2000000,
+  "description": "Proses pemasangan",
+  "attachment_path": "",
+  "service": true,
+  "material": false,
+  "status": "MENUNGGU PROSES",
+  "phase": "Phase 1",
+  "survey_md_doc": "survey_document.pdf",
+  "wo_doc": "work_order_document.pdf",
+  "po_doc": "purchase_order_document.pdf"
+}
+RESPONSE :{
+  "success": true,
+  "message": "Insert data success"
+}
+
+
+-----------------------------UPDATE PROJECT----------------------------- 
+
+
+PUT : http://localhost:8080/api/teams/1
+BODY : 
+{ 
+  "id": 28, 
+  "po_id": "PO-Sokaraja Kulon",
+  "wo_id": "WO-Sokaraja Kulon",
+  "project_type_id": 2,
+  "regional": 1,
+  "witel": 9,
+  "psa": 81,
+  "pic": 28,
+  "unit": "Sidamukti",
+  "cable_volume": 500,
+  "pole": 70,
+  "port": 40,
+  "service_price": 11000000,
+  "material_price": 40000000,
+  "inc_material_price": 5000000,
+  "deploy_service_price": 2000000,
+  "description": "Proses pemasangan",
+  "attachment_path": "",
+  "service": true,
+  "material": false,
+  "status": "MENUNGGU PROSES",
+  "phase": "Phase 1",
+  "survey_md_doc": "survey_document.pdf",
+  "wo_doc": "work_order_document.pdf",
+  "po_doc": "purchase_order_document.pdf"
+}
+RESPONSE :{
+  "success": true,
+  "message": "Update data success"
+}
+
+
+
+-----------------------------DELETE PROJECT----------------------------- 
+
+
+DELETE : http://localhost:8080/api/project
+BODY : 
+{ 
+  "id": 28
+}
+RESPONSE :{
+  "success": true,
+  "message": "Delete data success"
+}
+
+

@@ -2864,6 +2864,7 @@ dependencies = [
  "actix-web-httpauth",
  "bcrypt",
  "chrono",
+ "cookie",
  "dotenv",
  "futures",
  "jsonwebtoken",

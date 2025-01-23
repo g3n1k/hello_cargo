@@ -1,6 +1,6 @@
 use actix_web::{web, HttpResponse};
 use sqlx::PgPool;
-use crate::model::{ApiResponse, AreaAssigned, CreateUserRequest, LoginRequest, Team, UpdateUserRequest, User, UserAreaAssigned};
+use crate::model::{ApiResponse, AreaAssigned, CreateUserRequest, Team, UpdateUserRequest, User, UserAreaAssigned};
 
 // User handlers
 pub async fn create_user_new(
@@ -163,10 +163,10 @@ pub async fn get_all_users_new(
     User::get_all_users(&pool).await
 }
 
-// Add this handler function
-pub async fn login_user_new(
-    pool: web::Data<PgPool>,
-    login_req: web::Json<LoginRequest>,
-) -> HttpResponse {
-    User::login(&pool, login_req.into_inner()).await
-} 
+// // Add this handler function
+// pub async fn login_user_new(
+//     pool: web::Data<PgPool>,
+//     login_req: web::Json<LoginRequest>,
+// ) -> HttpResponse {
+//     User::login(&pool, login_req.into_inner()).await
+// } 

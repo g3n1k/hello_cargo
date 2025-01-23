@@ -1,4 +1,5 @@
-use actix_web::{web, App, HttpServer, http::header};  
+use actix_web::{web, App, HttpServer, http::header}; 
+use middleware::Auth;
 use sqlx::PgPool;
 use wfm_be::*;
 use std::env;
@@ -19,8 +20,8 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || {
         let cors = Cors::permissive()
-        .allowed_origin("http://localhost:5173") 
-        .allowed_origin("http://192.168.1.2:5173")
+        .allow_any_origin() 
+        // .allowed_origin("http://192.168.1.2:5173")
         .allowed_methods(vec!["GET", "POST", "PUT", "DELETE"])
         .allowed_headers(vec![
            header::AUTHORIZATION,
@@ -31,8 +32,8 @@ async fn main() -> std::io::Result<()> {
 
         App::new()
             .app_data(web::Data::new(pool.clone()))
-            // .wrap(Auth)
             .wrap(cors)
+            .wrap(Auth)
             .configure(config)
         })
     .bind(url)?

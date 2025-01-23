@@ -1,22 +1,17 @@
-# Menerima argumen build
-ARG DATABASE_URL
-ARG JWT_SECRET
-ARG SQLX_OFFLINE
+# select build image
+FROM wfm-be as build
 
-# Stage 1: Build
-FROM rust:latest AS builder
+# copy over your manifests
+# COPY ./Cargo.lock ./Cargo.lock
+# COPY ./Cargo.toml ./Cargo.toml
 
-# Set variabel lingkungan
-ENV DATABASE_URL=${DATABASE_URL}
-ENV JWT_SECRET=${JWT_SECRET}
-ENV SQLX_OFFLINE=${SQLX_OFFLINE}
+# copy your source tree
+COPY . /app
 
-WORKDIR /usr/src/app
-
-# Copy source code and dependencies
-COPY . .
+# build for release
 RUN cargo build --release
 
+# our final base
 # Stage 2: Final image
 FROM debian:bookworm-slim
 
@@ -24,10 +19,9 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
 
-# Copy the binary from the build stage
-COPY --from=builder /usr/src/app/target/release/my_app /app/
+# copy the build artifact from the build stage
+COPY --from=build /app/target/release/wfm-be .
 
-# Set executable
-CMD ["./my_app"]
+# set the startup command to run your binary
+CMD ["./wfm-be"]
