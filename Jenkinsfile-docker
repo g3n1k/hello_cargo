@@ -33,10 +33,9 @@ pipeline {
                 script {
                     // Build Docker Image
                     // sh 'docker buildx build --env-file /var/jenkins_home/env/WFM-BE.env -t g3n1k/wfm-be .'
-                    sh "export $(grep -v '^#' /var/jenkins_home/env/WFM-BE.env | xargs) && \
-                        docker buildx build \
-                        $(grep -v '^#' /var/jenkins_home/env/WFM-BE.env | sed 's/^/--build-arg /') \
-                        -t g3n1k/wfm-be ."
+                    sh 'docker buildx build --build-arg SQLX_OFFLINE=true -t g3n1k/wfm-be .'
+                    
+                    
                 }
             }
         }
