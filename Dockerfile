@@ -1,5 +1,5 @@
 # select build image
-FROM wfm-be as build
+FROM g3n1k/wfm-be-pre AS build
 
 # copy over your manifests
 # COPY ./Cargo.lock ./Cargo.lock
@@ -17,6 +17,7 @@ FROM debian:bookworm-slim
 
 RUN apt-get update && apt-get install -y \
     libssl-dev \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 
